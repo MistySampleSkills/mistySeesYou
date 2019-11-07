@@ -16,13 +16,11 @@
 // Misty Looks around when she does not see a human faces
 
 misty.Set("faceInFOV", false, false);
-misty.MoveArmDegrees("right", 70, 10);
-misty.Pause(50);
-misty.MoveArmDegrees("left", 70, 10);
+misty.MoveArmDegrees("both", 90, 100);
 
 function _look_around(repeat = true) 
 {
-    if (!misty.Get("faceInFOV")) misty.MoveHeadPosition(gaussianRandom(-5, 5), gaussianRandom(-5, 5), gaussianRandom(-5, 5), 300);
+    if (!misty.Get("faceInFOV")) misty.MoveHeadDegrees(gaussianRandom(-20, 35), gaussianRandom(-35, 35), gaussianRandom(-75, 75), 300);
     if (repeat) misty.RegisterTimerEvent("look_around", getRandomInt(5, 10) * 1000, false);
 }
 misty.RegisterTimerEvent("look_around", 10, false);
@@ -33,6 +31,7 @@ function gaussianRand()
     let num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
     num = num / 10.0 + 0.5;
     if (num > 1 || num < 0) return gaussianRand();
+    
     return num;
 }
 
@@ -69,13 +68,9 @@ function _FaceDetect(data)
     misty.PlayAudio("s_Awe.wav", 100);
 
     // wave
-    misty.MoveArmDegrees("right", -80, 10);
-    misty.Pause(50);
-    misty.MoveArmDegrees("left", -80, 10);
+    misty.MoveArmDegrees("both", -26, 100);
     misty.Pause(1000);
-    misty.MoveArmDegrees("right", 70, 10);
-    misty.Pause(50);
-    misty.MoveArmDegrees("left", 70, 10);
+    misty.MoveArmDegrees("both", 90, 100);
 
     misty.RegisterTimerEvent("timeoutToNormal", 6000, false);
 }
@@ -86,7 +81,7 @@ function _timeoutToNormal()
 {
     misty.Set("faceInFOV", false, false);
     misty.Pause(100);
-    // misty.MoveHeadPosition(0.1, 0.1, 0.1, 40);
+    // misty.MoveHeadDegrees(0.1, 0.1, 0.1, 40);
     misty.ChangeLED(0, 255, 0);
     misty.DisplayImage("e_DefaultContent.jpg");
 }
