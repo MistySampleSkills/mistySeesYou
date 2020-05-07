@@ -1,5 +1,7 @@
 # mistySeesYou
 
+*Last tested on `robotVersion 1.16.1.10505`*
+
 When this skill runs, Misty looks for your face and reacts when she sees you.
 
 ---
